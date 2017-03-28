@@ -30,7 +30,7 @@ passport.serializeUser(function(user, done) {
 
 // tell passport how to go from the serialized data back to the user
 passport.deserializeUser(function(username, done) {
-        done(err, users[username]);
+        done(null, users[username]);
 });
 
 // tell the express app what middleware to use
