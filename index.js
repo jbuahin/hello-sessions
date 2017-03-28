@@ -12,19 +12,25 @@ var users = {};
 
 // tell passport to use a local strategy and tell it how to validate a username and password
 passport.use(new LocalStrategy(function(username, password, done) {
-	if (!users.hasOwnProperty(username)) 
-			users[username] = {}
-	return done(null, { username: username, pairs: users[username] });
+	if (!users.hasOwnProperty(username)) {
+			users[username] = {
+				username: username,
+				password:password,
+				pairs:{}
+			};
+			return done(null, { username: username, pairs: users[username] });
+	}
+	return done(null,false);
 }));
 
 // tell passport how to turn a user into serialized data that will be stored with the session
 passport.serializeUser(function(user, done) {
-    done(null, users.username );
+    done(null, user.username );
 });
 
 // tell passport how to go from the serialized data back to the user
 passport.deserializeUser(function(username, done) {
-        done(err, { username: username, pairs: users[username] });
+        done(err, users[username]);
 });
 
 // tell the express app what middleware to use
@@ -43,11 +49,7 @@ app.get('/', function (req, res) {
 // get key value  health
 app.post('/login',passport.authenticate('local'), 
     function(req, res) {
-        if (req.user)
-		{
-				return res.sendStatus(200).send(req.user.pair);
-		}
-		
+	res.status(200).send(req.user.pair);}
 );
 												
 													
@@ -55,7 +57,7 @@ app.post('/login',passport.authenticate('local'),
 app.get('/health',
     function(req, res) {
         if (req,res)
-			return res.sendStatus(200);
+		res.sendStatus(200);
     }
 );
 
