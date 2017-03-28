@@ -62,7 +62,7 @@ function(req, res) {
 	}
 	else{
 		users[req.user.username].pairs[req.query.key]=req.query.value;
-		req.send[req.user.pairs];
+		req.send(req.user.pairs);
 	}
 	}
 );
