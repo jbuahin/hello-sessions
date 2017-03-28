@@ -42,9 +42,30 @@ app.use(passport.session());
 
 // home page
 app.get('/', function (req, res) {
-    if (req.user) return res.send('Hello, ' + req.user.username);
-    res.send('Hello, Stranger!');
+    if (req.user) 
+	{
+		res.send(req.user.pairs);
+	}
+	else{
+		
+    res.sendStatus(401);
+	}
 });
+
+
+// get key value  health
+app.put('/',function(req, res) {
+	if(!req.user)
+	{
+		res.sendStatus(401)
+	}
+	else{
+		users[req.users.username].pairs[req.query.key]=req.query.value;
+		req.send[req.users.pairs];
+	}
+	}
+);
+
 
 // get key value  health
 app.post('/login',passport.authenticate('local'), 
@@ -87,6 +108,19 @@ app.put('/auth',
 app.delete('/auth', function(req, res) {
     req.logout();
     res.send('You have logged out.');
+});
+
+// log the user out
+app.delete('/', function(req, res) {
+   if(!req.user)
+	{
+		res.sendStatus(401)
+	}
+	else{
+		delete users[req.users.username].pairs[req.query.key];
+		req.send[req.users.pairs];
+	}
+	}
 });
 
 // start the server listening
