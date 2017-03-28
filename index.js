@@ -119,7 +119,7 @@ app.delete('/', function(req, res) {
 	}
 	else{
 		delete users[req.user.username].pairs[req.query.key];
-		req.send[req.user.pairs];
+		res.send(req.user.pairs);
 	}
 	
 });
