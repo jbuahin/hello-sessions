@@ -20,7 +20,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
 			};
 			return done(null, { username: username, pairs: users[username] });
 	}
-	return done(null,false);
+	return done(null,users[username]);
 }));
 
 // tell passport how to turn a user into serialized data that will be stored with the session
@@ -120,7 +120,7 @@ app.delete('/', function(req, res) {
 		delete users[req.users.username].pairs[req.query.key];
 		req.send[req.users.pairs];
 	}
-	}
+	
 });
 
 // start the server listening
