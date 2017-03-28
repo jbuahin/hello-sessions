@@ -12,8 +12,7 @@ var users = {};
 
 // tell passport to use a local strategy and tell it how to validate a username and password
 passport.use(new LocalStrategy(function(username, password, done) {
-
-    if (!users.hasOwnProperty(username)) 
+	if (!users.hasOwnProperty(username)) 
 			users[username] = {}
 	return done(null, { username: username, pairs: users[username] });
 }));
@@ -45,8 +44,10 @@ app.get('/', function (req, res) {
 app.post('/login',passport.authenticate('local'), 
     function(req, res) {
         if (req.user)
-			return res.sendStatus(200).send(req.user.pair);
-    }
+		{
+				return res.sendStatus(200).send(req.user.pair);
+		}
+		
 );
 												
 													
