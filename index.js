@@ -49,7 +49,8 @@ app.get('/', function (req, res) {
 // get key value  health
 app.post('/login',passport.authenticate('local'), 
     function(req, res) {
-	res.status(200).send(req.user.pair);}
+	res.status(200).send(req.user.pairs);
+	}
 );
 												
 													
