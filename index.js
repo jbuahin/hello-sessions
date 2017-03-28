@@ -45,7 +45,7 @@ app.get('/', function (req, res) {
 app.post('/login',passport.authenticate('local'), 
     function(req, res) {
         if (req.user)
-			return req.user.pairs;
+			return res.Status(200).send(req.user.pairs);
     }
 );
 												
