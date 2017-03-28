@@ -70,6 +70,12 @@ app.get('/protected',
     }
 );
 
+// log the user out
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.sendStatus(200);
+});
+
 // specify the login url
 app.put('/auth',
     passport.authenticate('local'),
