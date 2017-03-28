@@ -19,7 +19,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
 
 // tell passport how to turn a user into serialized data that will be stored with the session
 passport.serializeUser(function(user, done) {
-    done(null, user.username );
+    done(null, users.username );
 });
 
 // tell passport how to go from the serialized data back to the user
