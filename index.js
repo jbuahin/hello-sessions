@@ -54,10 +54,11 @@ app.get('/', function (req, res) {
 
 
 // get key value  health
-app.put('/',function(req, res) {
+app.put('/',
+function(req, res) {
 	if(!req.user)
 	{
-		res.sendStatus(401)
+		res.sendStatus(401);
 	}
 	else{
 		users[req.user.username].pairs[req.query.key]=req.query.value;
