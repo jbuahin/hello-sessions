@@ -60,8 +60,8 @@ app.put('/',function(req, res) {
 		res.sendStatus(401)
 	}
 	else{
-		users[req.users.username].pairs[req.query.key]=req.query.value;
-		req.send[req.users.pairs];
+		users[req.user.username].pairs[req.query.key]=req.query.value;
+		req.send[req.user.pairs];
 	}
 	}
 );
@@ -117,8 +117,8 @@ app.delete('/', function(req, res) {
 		res.sendStatus(401)
 	}
 	else{
-		delete users[req.users.username].pairs[req.query.key];
-		req.send[req.users.pairs];
+		delete users[req.user.username].pairs[req.query.key];
+		req.send[req.user.pairs];
 	}
 	
 });
